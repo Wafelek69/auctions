@@ -1,22 +1,22 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head.html :: head(title='navigation.register')"></head>
+<head th:replace="fragments/head.html :: head(title='registration.register')"></head>
 
 <body>
-<form action="*">
-    <label>Login</label> <input type="text" name="nazwisko" size="50" maxlength"30" />
-</form>
-<form action="*">
-    <label>Hasło</label> <input type="text" name="nazwisko" size="50" maxlength"30" />
-</form>
-<form action="*">
-    <label>Nazwa konta</label> <input type="text" name="nazwisko" size="50" maxlength"30" />
-</form>
-<form action="*">
-    <label>Województwo</label> <input type="text" name="nazwisko" size="50" maxlength"30" />
-</form>
-<form action="*">
-    <label>Miasto</label> <input type="text" name="nazwisko" size="50" maxlength"30" />
+
+<form method="post" action="/registration">
+    <label>Login</label> <input type="text" id="email"  />
+    <br>
+
+    <label>Hasło</label> <input type="text" id="password" />
+    <br>
+    <label>Nazwa konta</label> <input type="text" id="name" />
+    <br>
+    <label>Województwo</label> <input type="text" id="wojewodztwo" />
+    <br>
+    <label>Miasto</label> <input type="text" id="city" />
+    <br>
+    <button th:text="#{registration.register}" type="submit"></button>
 </form>
 
 
