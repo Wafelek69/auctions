@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head.html :: head(title='error.page')"></head>
+
+<body>
+<main role="main" class="inner cover">
+    <div class="container-fluid d-flex h-100 p-3 mx-auto flex-column justify-content-center">
+        <h1 class="cover-heading" th:text="#{error.404}"></h1>
+        <p class="lead">
+            <a th:href="@{/}" th:text="#{error.back}" ></a>
+        </p>
+    </div>
+</main>
+
+<footer th:replace="fragments/footer.html :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head.html :: head(title='home.title')"></head>
+
+<body>
+<div class="container-fluid d-flex h-100 p-3 mx-auto flex-column justify-content-center">
+    <main role="main" class="inner cover">
+        <main role="main" class="inner cover">
+            <h3 th:text="#{home.invitation}"></h3>
+            <a th:href="@{/logout}" th:text="#{navigation.logout}"></a>
+        </main>
+    </main>
+</div>
+
+<footer th:replace="fragments/footer.html :: footer"></footer>
+</body>
+</html>
