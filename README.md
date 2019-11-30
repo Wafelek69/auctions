@@ -21,6 +21,3 @@ You can configure database url, username and password with environment variables
 * JDBC_DATABASE_USERNAME
 * JDBC_DATABASE_PASSWORD
 
-# Demo
-
-Demo of application is avaiable on [https://katlasik-board.herokuapp.com/](https://katlasik-board.herokuapp.com/).
