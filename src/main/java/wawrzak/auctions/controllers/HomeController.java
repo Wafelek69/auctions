@@ -1,4 +1,4 @@
-package katlasik.board.controllers;
+package wawrzak.auctions.controllers;
 
 
 import org.springframework.stereotype.Controller;

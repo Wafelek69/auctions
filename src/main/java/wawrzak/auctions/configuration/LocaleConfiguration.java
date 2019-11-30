@@ -1,4 +1,4 @@
-package katlasik.board.configuration;
+package wawrzak.auctions.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
