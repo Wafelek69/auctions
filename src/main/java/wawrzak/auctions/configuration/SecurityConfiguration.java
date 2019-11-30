@@ -1,6 +1,6 @@
-package katlasik.board.configuration;
+package wawrzak.auctions.configuration;
 
-import katlasik.board.model.Role;
+import wawrzak.auctions.model.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -24,6 +24,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .withUser("user@mail.com")
                 .password(passwordEncoder().encode("pass"))
                 .roles(Role.USER.name());
+
+        auth.
+                inMemoryAuthentication()
+                .withUser("admin@mail.com")
+                .password(passwordEncoder().encode("pass"))
+                .roles(Role.ADMIN.name());
     }
 
     @Override
@@ -37,11 +43,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/", "/login", "/registration").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                //.loginPage("/login")
+                 .formLogin()
+                 //.loginPage("/login")
+
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/home", true)
                 .failureUrl("/login?error=true")
