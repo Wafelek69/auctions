@@ -6,7 +6,9 @@
 <div class="container-fluid d-flex h-100 p-3 mx-auto flex-column justify-content-center">
     <main role="main" class="inner cover">
         <main role="main" class="inner cover">
-            <h3 th:text="#{home.invitation}"></h3>
+            <a th:text="#{home.invitation(${user.name})}"> </a>
+
+
             <a th:href="@{/logout}" th:text="#{navigation.logout}"></a>
         </main>
     </main>

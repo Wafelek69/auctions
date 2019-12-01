@@ -1,3 +1,4 @@
+
 DROP DATABASE IF EXISTS auctions;
 DROP USER IF EXISTS auctions_user;
 
