@@ -30,22 +30,22 @@ public class User {
     @Column(unique = true)
     private String name;
 
-    @Size(min = 3)
-    @NotEmpty
     @NotNull
-    @Column(unique = true)
-    private String wojewodztwo;
-
-    @Size(min = 3)
-    @NotEmpty
-    @NotNull
-    @Column(unique = true)
-    private String city;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     private boolean active;
 
     public long getId() {
         return id;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public void setId(long id) {
@@ -76,27 +76,11 @@ public class User {
         this.name = name;
     }
 
-    public String getWojewodztwo() {
-        return wojewodztwo;
+    public Role getRole() {
+        return role;
     }
 
-    public void setWojewodztwo(String wojewodztwo) {
-        this.wojewodztwo = wojewodztwo;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
