@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head.html :: head(title='home.title')"></head>
+<body>
+
+<form th:object="${auction}" method="post" action="/new-question">
+
+    <label for="title" th:text="#{auction.title}"></label>
+    <input th:field="*{title}" class="form-control" id="title" th:placeholder="#{auction.title}">
+    <div th:each="error: ${#fields.errors('title')}"
+         th:text="${error}"></div>
+</form>
+</div>
+
+</body>
+</html>

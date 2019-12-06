@@ -3,16 +3,25 @@
 <head th:replace="fragments/head.html :: head(title='home.title')"></head>
 
 <body>
-<div class="container-fluid d-flex h-100 p-3 mx-auto flex-column justify-content-center">
+
     <main role="main" class="inner cover">
-        <main role="main" class="inner cover">
+
+
+
+        <div class="inner">
+            <p style="text-align: right">
+                <a th:text="#{navigation.newAuction}" th:href="@{/new-auction}"></a>
+                <a th:text="#{navigation.latestAuction}" th:href="@{/}"></a>
+                <a th:text="#{navigation.myAuction}" th:href="@{/logout}"></a>
+
             <a th:text="#{home.invitation(${user.name})}"> </a>
+            <a th:text="#{navigation.logout}" th:href="@{/logout}"></a>
 
+            </p>
+        </div>
 
-            <a th:href="@{/logout}" th:text="#{navigation.logout}"></a>
-        </main>
     </main>
-</div>
+
 
 <footer th:replace="fragments/footer.html :: footer"></footer>
 </body>
