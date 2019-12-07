@@ -8,11 +8,11 @@
         <version>2.2.1.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>katlasik</groupId>
-    <artifactId>board</artifactId>
+    <groupId>wawrzak</groupId>
+    <artifactId>auction</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>board</name>
-    <description>Question board</description>
+    <name>auction</name>
+    <description>Auction</description>
 
     <properties>
         <java.version>11</java.version>
