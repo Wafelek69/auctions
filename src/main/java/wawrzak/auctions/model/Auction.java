@@ -32,10 +32,6 @@ public class Auction {
     @Size(min = 10, max = 1000)
     private String description;
 
-//    @OrderBy("createdOn")
-//    @OneToMany(mappedBy = "auction")
-//    private List<Answer> answers = new ArrayList<>();
-
     @CreationTimestamp
     private LocalDateTime createdOn;
 

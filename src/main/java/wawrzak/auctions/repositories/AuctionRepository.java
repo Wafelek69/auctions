@@ -13,12 +13,9 @@ import java.util.Optional;
 @Repository
 public interface AuctionRepository extends PagingAndSortingRepository <Auction, Long>, JpaRepository<Auction, Long> {
 
-//    @Query("select q from Question q left join fetch q.user u left join fetch q.answers a left join fetch a.user where q.id = ?1 order by q.createdOn")
-//    Optional<Auction> findWithBays(Long id);
-
-    @Query("select new wawrzak.auctions.dtos.QuestionView(q.id, q.title, size(a)) from Question q left join q.answers a group by q.id, q.title order by q.createdOn desc ")
+    @Query("select new wawrzak.auctions.dtos.AuctionView(a.id, a.title) from Auction a order by a.createdOn desc ")
     List<AuctionView> findAuctionViews();
 
-    @Query("select new wawrzak.auctions.dtos.QuestionView(q.id, q.title, size(a)) from Question q left join q.answers a where q.user.id = ?1 group by q.id, q.title order by q.createdOn desc ")
+    @Query("select new wawrzak.auctions.dtos.AuctionView(a.id, a.title) from Auction a order by a.createdOn desc ")
     List<AuctionView> findAuctionViewsById(long usedId);
 }

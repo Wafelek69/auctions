@@ -6,12 +6,11 @@ public class AuctionView {
 
     private final long id;
     private final String title;
-    private final int answerCount;
 
-    public AuctionView(long id, String title, int answerCount) {
+    public AuctionView(long id, String title) {
         this.id = id;
         this.title = title;
-        this.answerCount = answerCount;
+
     }
 
     public long getId() {
@@ -22,9 +21,6 @@ public class AuctionView {
         return title;
     }
 
-    public int getAnswerCount() {
-        return answerCount;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -32,13 +28,12 @@ public class AuctionView {
         if (o == null || getClass() != o.getClass()) return false;
         AuctionView that = (AuctionView) o;
         return id == that.id &&
-                answerCount == that.answerCount &&
                 Objects.equals(title, that.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, answerCount);
+        return Objects.hash(id, title);
     }
 
     @Override
@@ -46,7 +41,6 @@ public class AuctionView {
         return "AuctionView{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", answerCount=" + answerCount +
                 '}';
     }
 }
