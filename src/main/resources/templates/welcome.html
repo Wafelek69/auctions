@@ -11,6 +11,8 @@
         <a th:href="@{/login}" th:text="#{navigation.login}"></a>
         <a th:href="@{/registration}" th:text="#{registration.register}"></a>
 
+        <div th:insert="fragments/auctions.html :: div(auctions=${auctions})"></div>
+
     </main>
 </div>
 <footer th:replace="fragments/footer.html :: footer"></footer>

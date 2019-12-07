@@ -6,8 +6,6 @@
 
     <main role="main" class="inner cover">
 
-
-
         <div class="inner">
             <p style="text-align: right">
                 <a th:text="#{navigation.newAuction}" th:href="@{/new-auction}"></a>
@@ -16,11 +14,10 @@
 
             <a th:text="#{home.invitation(${user.name})}"> </a>
             <a th:text="#{navigation.logout}" th:href="@{/logout}"></a>
-
             </p>
         </div>
-
     </main>
+    <div th:insert="fragments/auctions.html :: div(auctions=${auctions})"></div>
 
 
 <footer th:replace="fragments/footer.html :: footer"></footer>

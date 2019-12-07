@@ -1,5 +1,7 @@
 package wawrzak.auctions.services;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import wawrzak.auctions.dtos.AuctionView;
 import wawrzak.auctions.dtos.NewAuction;
@@ -15,16 +17,17 @@ public class AuctionService {
     private final AuctionRepository auctionRepository;
     private final SecurityService securityService;
 
+
     public AuctionService(AuctionRepository auctionRepository, SecurityService securityService) {
         this.auctionRepository = auctionRepository;
         this.securityService = securityService;
     }
 
-//    public Optional<Auction> findWithbays(Long auctionId){
-//        return auctionRepository.findWithBays(auctionId);
-//    }
-    public List<AuctionView> findAuctionViews(){
-        return auctionRepository.findAuctionViews();
+    public Optional<Auction> findWithbays(Long auctionId){
+        return auctionRepository.findWithBays(auctionId);
+    }
+    public Page<AuctionView> findAuctionViews(Pageable page){
+        return auctionRepository.findAuctionViews(page);
     }
     public List<AuctionView> findAuctionViewsByUserId(Long userId){
         return auctionRepository.findAuctionViewsById(userId);

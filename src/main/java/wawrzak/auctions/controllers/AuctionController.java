@@ -7,13 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.server.ResponseStatusException;
 import wawrzak.auctions.dtos.NewAuction;
 import wawrzak.auctions.services.AuctionService;
 
 import javax.validation.Valid;
-
-import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Controller
 public class AuctionController {
@@ -32,21 +29,15 @@ public class AuctionController {
 
         return "new-auction";
     }
-//    @GetMapping("/auction/{auctionId}")
-//    public String getAuction(Model model, @PathVariable long auctionId) {
-//
-//        var maybeQuestion = auctionService.findWithbays(auctionId);
-//
-//        return maybeQuestion.map(
-//                auction -> {
-//                    if (!model.containsAttribute("answer")) {
-//                        model.addAttribute("answer", new NewAnswer(auctionId));
-//                    }
-//                    model.addAttribute("auction", auction);
-//                    return "auction";
-//                }
-//        ).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Couldn't find question with id=" + auctionId + "."));
-//    }
+    @GetMapping("/auction/{auctionId}")
+    public String getAuction(Model model, @PathVariable long auctionId) {
+
+        var maybeAuction = auctionService.findWithbays(auctionId);
+
+        model.addAttribute("auction", auctionId);
+
+        return "auction";
+    }
 
     @PostMapping("/new-auction")
     public String postQuestion(@ModelAttribute("auction") @Valid NewAuction auction, BindingResult bindingResult) {
