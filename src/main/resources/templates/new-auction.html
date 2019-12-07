@@ -1,16 +1,30 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head.html :: head(title='home.title')"></head>
-<body>
+<div>
 
-<form th:object="${auction}" method="post" action="/new-question">
+<form th:object="${auction}" method="post" action="/new-auction">
 
     <label for="title" th:text="#{auction.title}"></label>
     <input th:field="*{title}" class="form-control" id="title" th:placeholder="#{auction.title}">
     <div th:each="error: ${#fields.errors('title')}"
          th:text="${error}"></div>
+
+    <label for="description" th:text="#{auction.description}"></label>
+    <input th:field="*{description}" class="form-control" id="description" th:placeholder="#{auction.description}">
+    <div th:each="error: ${#fields.errors('description')}"
+         th:text="${error}"></div>
+
+
+<input
+        type="hidden"
+        th:name="${_csrf.parameterName}"
+        th:value="${_csrf.token}"/>
+<button th:text="#{auction.add}" type="submit"></button>
 </form>
 </div>
+
+
 
 </body>
 </html>
