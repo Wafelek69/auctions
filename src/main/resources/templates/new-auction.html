@@ -7,7 +7,7 @@
 
 <div>
 
-<form th:object="${auction}" method="post" action="/new-auction">
+<form th:object="${auction}" enctype="multipart/form-data" method="post" th:action="${'/new-auction?' + _csrf.parameterName + '=' + _csrf.token}">
 
     <label for="title" th:text="#{auction.title}"></label>
     <input th:field="*{title}" class="form-control" id="title" th:placeholder="#{auction.title}">
