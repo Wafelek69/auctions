@@ -2,9 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head.html :: head(title='home.title')"></head>
 
-
 <body>
 <header th:insert="fragments/header.html :: nav"></header>
+
     <div th:insert="fragments/auctions.html :: div(auctions=${auctions})"></div>
 
 

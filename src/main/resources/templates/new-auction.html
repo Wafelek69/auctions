@@ -4,6 +4,7 @@
 
 <body>
 <header th:insert="fragments/header.html :: nav"></header>
+
 <div>
 
 <form th:object="${auction}" method="post" action="/new-auction">
@@ -17,6 +18,15 @@
     <input th:field="*{description}" class="form-control" id="description" th:placeholder="#{auction.description}">
     <div th:each="error: ${#fields.errors('description')}"
          th:text="${error}"></div>
+
+    <div>
+        <label for="image" th:text="#{auction.image}"></label>
+        <div>
+            <label th:text="#{auction.upload}"></label>
+            <template th:text="#{auction.uploaded}"></template>
+            <input accept="image/*" th:field="*{files}" id="image" multiple type="file"/>
+        </div>
+    </div>
 
 <input
         type="hidden"

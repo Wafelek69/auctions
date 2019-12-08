@@ -44,8 +44,9 @@ public class AuctionController {
     }
 
     @PostMapping("/new-auction")
-    public String postQuestion(@ModelAttribute("auction") @Valid NewAuction auction, BindingResult bindingResult) {
+    public String postQuestion(@ModelAttribute("auction") @Valid NewAuction auction, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("user", securityService.getLoggedInUser());
             return "new-auction";
         } else {
             var persisted = auctionService.createAuction(auction);

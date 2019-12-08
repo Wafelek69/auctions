@@ -1,0 +1,2 @@
+create table auction_images (auction_id bigint not null, content_type varchar(255), image longblob, name varchar(255), size bigint not null) engine=InnoDB
+alter table auction_images add constraint auction_images_FK foreign key (auction_id) references auction (id)

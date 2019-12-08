@@ -1,5 +1,7 @@
 package wawrzak.auctions.dtos;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,6 +18,16 @@ public class NewAuction {
     @NotEmpty
     @Size(min = 20, max = 1000)
     private String description;
+
+    private MultipartFile[] files;
+
+    public MultipartFile[] getFiles() {
+        return files;
+    }
+
+    public void setFiles(MultipartFile[] files) {
+        this.files = files;
+    }
 
     public String getTitle() {
         return title;

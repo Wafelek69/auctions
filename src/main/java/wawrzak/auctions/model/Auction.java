@@ -7,9 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 public class Auction {
@@ -34,6 +32,23 @@ public class Auction {
 
     @CreationTimestamp
     private LocalDateTime createdOn;
+
+    @ElementCollection
+    @CollectionTable(name = "auction_images")
+    private Set<Image> images = new HashSet<>();
+
+
+    public void addImage(Image image) {
+        images.add(image);
+    }
+
+    public Set<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<Image> images) {
+        this.images = images;
+    }
 
 
     public long getId() {
