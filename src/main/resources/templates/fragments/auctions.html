@@ -1,11 +1,14 @@
 <div xmlns:th="http://www.thymeleaf.org">
     <div th:each="auction : ${auctions}" class="card-body d-flex flex-column align-items-start justify-content-start">
-        <div class="mb-1"><a th:text="${auction.title}" th:href="${'/auction/' + auction.id}"></a> </div>
+        <div class="mb-1">
+<!--            <img th:if="${auction.images.size() > 0}" th:src="${auction.images.get(0).asByte64()}">-->
+            <a th:text="${auction.title}" th:href="${'/auction/' + auction.id}"></a> </div>
     </div>
 
 <nav aria-label="Page navigation example">
     <ul class="pagination">
         <li th:each="i: ${#numbers.sequence(0, auctions.getTotalPages() - 1)}" th:classappend="${i == auctions.getNumber()} ? 'active page-item' : 'page-item'">
+
             <a class="page-link" th:href="@{${#httpServletRequest.requestURI + '?page=' + i}}" th:text="${i}"></a>
         </li>
     </ul>

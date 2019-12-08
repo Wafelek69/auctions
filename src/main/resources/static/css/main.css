@@ -1,0 +1,11 @@
+.img-box {
+    margin-top: 10px;
+}
+
+.img-thumbnail {
+    max-width: 10vw;
+}
+
+.img-thumbnail + .img-thumbnail{
+    margin-left: 10px;
+}
