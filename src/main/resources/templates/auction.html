@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/head.html :: head(title='auction.page')"></head>
 <body>
-<h3> Test Pass</h3>
+<header th:insert="fragments/header.html :: nav"></header>
+
+<div><h3> <strong th:text="${auction.title}"></strong></h3></div>
+
+<div th:text="${auction.user.name}"></div>
+<p th:text="${auction.description}"></p>
+<div>
+    <a th:data-lightbox="${image.name}" th:each="image: ${auction.images}" th:href="${image.asByte64()}">
+        <img th:src="${image.asByte64()}" th:alt="${image.name}">
+    </a>
+</div>
+
+
 </body>
 </html>

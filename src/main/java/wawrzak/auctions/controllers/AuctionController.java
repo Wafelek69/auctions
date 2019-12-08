@@ -7,11 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.server.ResponseStatusException;
 import wawrzak.auctions.dtos.NewAuction;
 import wawrzak.auctions.services.AuctionService;
 import wawrzak.auctions.services.SecurityService;
 
 import javax.validation.Valid;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Controller
 public class AuctionController {
@@ -38,9 +41,15 @@ public class AuctionController {
 
         var maybeAuction = auctionService.findWithbays(auctionId);
 
-        model.addAttribute("auction", auctionId);
+        if(maybeAuction.isPresent()) {
+            model.addAttribute("auction", maybeAuction.get());
 
-        return "auction";
+            model.addAttribute("user", securityService.getLoggedInUser());
+
+            return "auction";
+        } else {
+            throw  new ResponseStatusException(NOT_FOUND, "Auction not found");
+        }
     }
 
     @PostMapping("/new-auction")

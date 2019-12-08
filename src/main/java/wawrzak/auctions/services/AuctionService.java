@@ -39,6 +39,7 @@ public class AuctionService {
     public Page<AuctionView> findAuctionViews(Pageable page){
         return auctionRepository.findAuctionViews(page);
     }
+
     public List<AuctionView> findAuctionViewsByUserId(Long userId){
         return auctionRepository.findAuctionViewsById(userId);
     }
