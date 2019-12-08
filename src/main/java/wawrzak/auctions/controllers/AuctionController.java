@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import wawrzak.auctions.dtos.NewAuction;
 import wawrzak.auctions.services.AuctionService;
+import wawrzak.auctions.services.SecurityService;
 
 import javax.validation.Valid;
 
@@ -16,9 +17,11 @@ import javax.validation.Valid;
 public class AuctionController {
 
     private final AuctionService auctionService;
+    private final SecurityService securityService;
 
-    public AuctionController(AuctionService auctionService) {
+    public AuctionController(AuctionService auctionService, SecurityService securityService) {
         this.auctionService = auctionService;
+        this.securityService = securityService;
     }
 
     @GetMapping("/new-auction")
@@ -26,6 +29,7 @@ public class AuctionController {
 
         var auction = new NewAuction();
         model.addAttribute("auction", auction);
+        model.addAttribute("user", securityService.getLoggedInUser());
 
         return "new-auction";
     }

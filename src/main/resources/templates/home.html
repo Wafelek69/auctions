@@ -2,21 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head.html :: head(title='home.title')"></head>
 
+
 <body>
-
-    <main role="main" class="inner cover">
-
-        <div class="inner">
-            <p style="text-align: right">
-                <a th:text="#{navigation.newAuction}" th:href="@{/new-auction}"></a>
-                <a th:text="#{navigation.latestAuction}" th:href="@{/}"></a>
-                <a th:text="#{navigation.myAuction}" th:href="@{/logout}"></a>
-
-            <a th:text="#{home.invitation(${user.name})}"> </a>
-            <a th:text="#{navigation.logout}" th:href="@{/logout}"></a>
-            </p>
-        </div>
-    </main>
+<header th:insert="fragments/header.html :: nav"></header>
     <div th:insert="fragments/auctions.html :: div(auctions=${auctions})"></div>
 
 
