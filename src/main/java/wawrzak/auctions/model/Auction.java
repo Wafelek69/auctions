@@ -92,6 +92,18 @@ public class Auction {
     }
 
     @Override
+    public String toString() {
+        return "Auction{" +
+                "id=" + id +
+                ", user=" + user +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", createdOn=" + createdOn +
+                ", images=" + images +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

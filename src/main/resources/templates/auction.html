@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments/head.html :: head(title='auction.page')"></head>
 <body>
@@ -9,7 +9,7 @@
 
 <div th:text="${auction.user.name}"></div>
 <p th:text="${auction.description}"></p>
-<div>
+<div class="img-box">
     <a th:data-lightbox="${image.name}" th:each="image: ${auction.images}" th:href="${image.asByte64()}">
         <img th:src="${image.asByte64()}" th:alt="${image.name}">
     </a>

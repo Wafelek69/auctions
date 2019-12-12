@@ -23,6 +23,7 @@ public class HomeController {
     @GetMapping("/")
     public String getWelcome(Model model, Pageable page) {
         model.addAttribute("auctions", auctionService.findAuctionViews(page));
+
         return "welcome";
     }
 

@@ -1,11 +1,13 @@
 <header xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
+
+    
     <div>
         <nav sec:authorize="isAuthenticated()">
             <p style="text-align: right">
                 <a th:text="#{navigation.latestAuction}" th:href="@{/home}"></a>
                 <a th:text="#{navigation.newAuction}" th:href="@{/new-auction}"></a>
                 <a th:text="#{navigation.myAuction}" th:href="@{/logout}"></a>
-                <a th:text="#{home.invitation(${user.name})}"> </a>
+                <a th:text="${user.name}"></a>
                 <a th:text="#{navigation.logout}" th:href="@{/logout}"></a>
             </p>
         </nav>

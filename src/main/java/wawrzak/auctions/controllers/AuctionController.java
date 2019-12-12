@@ -44,7 +44,7 @@ public class AuctionController {
         if(maybeAuction.isPresent()) {
             model.addAttribute("auction", maybeAuction.get());
 
-            model.addAttribute("user", securityService.getLoggedInUser());
+
 
             return "auction";
         } else {
