@@ -40,8 +40,8 @@ public class AuctionService {
         return auctionRepository.findAuctionViews(page);
     }
 
-    public List<AuctionView> findAuctionViewsByUserId(Long userId){
-        return auctionRepository.findAuctionViewsById(userId);
+    public Page<AuctionView> findQuestionViewsByUserId(Long userId, Pageable page) {
+        return auctionRepository.findQuestionViewsById(userId, page);
     }
 
     private List<Image> processImages(MultipartFile[] files) {

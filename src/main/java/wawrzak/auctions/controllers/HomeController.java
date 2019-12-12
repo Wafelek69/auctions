@@ -35,4 +35,12 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/my-auctions")
+    public String getMyQuestions(Model model, Pageable page) {
+        var user = securityService.getLoggedInUser();
+        model.addAttribute("auctions", auctionService.findQuestionViewsByUserId(user.getId(), page));
+        model.addAttribute("user", user);
+        return "my-auctions";
+    }
+
 }

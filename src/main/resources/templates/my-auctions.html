@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head.html :: head(title='question.page')"></head>
+
+<body>
+<header th:insert="fragments/header.html"></header>
+
+<div class="container-fluid d-flex h-100 p-3 mx-auto flex-column justify-content-center">
+    <main role="main" class="inner cover">
+        <h2 th:text="#{auction.Auctions(${auctions.getTotalElements()}, ${user.name})}"></h2>
+
+        <div th:insert="fragments/auctions.html :: div(auctions=${auctions})"></div>
+    </main>
+</div>
+
+<footer th:replace="fragments/footer.html :: footer"></footer>
+</body>
+</html>

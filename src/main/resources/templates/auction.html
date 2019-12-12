@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="fragments/head.html :: head(title='auction.page')"></head>
 <body>
-<header th:insert="fragments/header.html :: nav"></header>
+
+<header th:insert="fragments/header.html"></header>
 
 <div><h3> <strong th:text="${auction.title}"></strong></h3></div>
 
-<div th:text="${auction.user.name}"></div>
+<div th:text="#{auction.user(${auction.user.name})}"></div>
 <p th:text="${auction.description}"></p>
 <div class="img-box">
     <a th:data-lightbox="${image.name}" th:each="image: ${auction.images}" th:href="${image.asByte64()}">

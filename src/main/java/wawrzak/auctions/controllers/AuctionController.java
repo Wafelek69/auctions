@@ -46,6 +46,7 @@ public class AuctionController {
 
 
 
+
             return "auction";
         } else {
             throw  new ResponseStatusException(NOT_FOUND, "Auction not found");

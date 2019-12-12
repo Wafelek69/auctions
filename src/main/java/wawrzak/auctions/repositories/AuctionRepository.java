@@ -23,5 +23,5 @@ public interface AuctionRepository extends PagingAndSortingRepository <Auction, 
     Page<AuctionView> findAuctionViews(Pageable page);
 
     @Query("select new wawrzak.auctions.dtos.AuctionView(a.id, a.title) from Auction a order by a.createdOn desc ")
-    List<AuctionView> findAuctionViewsById(long usedId);
+    Page<AuctionView> findQuestionViewsById(long usedId, Pageable page);
 }

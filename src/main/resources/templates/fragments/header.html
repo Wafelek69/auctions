@@ -1,15 +1,18 @@
 <header xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
-
-    
-    <div>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <h5 class="my-0 mr-md-auto font-weight-normal">Auction</h5>
         <nav sec:authorize="isAuthenticated()">
-            <p style="text-align: right">
-                <a th:text="#{navigation.latestAuction}" th:href="@{/home}"></a>
-                <a th:text="#{navigation.newAuction}" th:href="@{/new-auction}"></a>
-                <a th:text="#{navigation.myAuction}" th:href="@{/logout}"></a>
-                <a th:text="${user.name}"></a>
-                <a th:text="#{navigation.logout}" th:href="@{/logout}"></a>
-            </p>
+            <b>
+        <ul>
+            <li><a th:text="#{navigation.latestAuction}" th:href="@{/home}"></a></li>
+            <li><a th:text="#{navigation.newAuction}" th:href="@{/new-auction}"></a></li>
+            <li><a th:text="#{navigation.myAuction}" th:href="@{/my-auctions}"></a></li>
+<!--            <li><a class="active"th:text="${user.name}"></a></li>-->
+
+            <li><button class="button" style="vertical-align:middle"><span><a th:text="#{navigation.logout}" th:href="@{/logout}"></a> </span></button></li>
+        </ul>
+            </b>
         </nav>
+        <div th:insert="fragments/banner.html"></div>
     </div>
 </header>

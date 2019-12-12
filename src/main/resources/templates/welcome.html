@@ -1,21 +1,19 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head.html :: head(title='welcome.title')"></head>
+<head th:replace="fragments/head.html :: head(title='thankyou.thanks')"></head>
 <body>
-<header th:insert="fragments/header.html :: nav"></header>
-<div class="container-fluid d-flex h-100 p-3 mx-auto flex-column">
-    <main role="main" class="inner cover">
+<header th:insert="fragments/header.html"></header>
 
-
-
-        <h3 th:text="#{welcome.invitation}"></h3>
-        <a th:href="@{/login}" th:text="#{navigation.login}"></a>
-        <a th:href="@{/registration}" th:text="#{registration.register}"></a>
-
-        <div th:insert="fragments/auctions.html :: div(auctions=${auctions})"></div>
-
-    </main>
+<div class="welcome-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Witaj</h1>
+    <p class="lead">Znajdź przedmiot dla siebie i swojej rodziny</p>
 </div>
-<footer th:replace="fragments/footer.html :: footer"></footer>
+
+<div th:insert="fragments/auctions.html :: div(auctions=${auctions})"></div>
+
+    <footer>
+
+    </footer>
+</div>
 </body>
 </html>
