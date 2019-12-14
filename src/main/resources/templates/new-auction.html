@@ -21,6 +21,9 @@
     <div>
     <label for="lastPrice" th:text="#{auction.price}"></label>
     <input th:field="*{lastPrice}" class="form-control" id="lastPrice" th:placeholder="#{auction.price}">
+        <div th:each="error: ${#fields.errors('lastPrice')}"
+             th:text="${error}"></div>
+        <div>
     </div>
 
     <div>
