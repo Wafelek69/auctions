@@ -2,7 +2,8 @@
     <div th:each="auction : ${auctions}" class="card-body d-flex flex-column align-items-start justify-content-start">
         <div class="mb-1">
 <!--            <img th:if="${auction.images.size() > 0}" th:src="${auction.images.get(0).asByte64()}">-->
-            <a th:text="${auction.title}" th:href="${'/auction/' + auction.id}"></a> </div>
+            <img th:if="${auction.thumbnail}" class="img-thumbnail" th:src="${auction.thumbnail.asByte64()}">
+            <a th:text="${auction.title}" th:href="${'/auction/' + auction.id}"></a></div>
     </div>
 
 <nav aria-label="Page navigation example">

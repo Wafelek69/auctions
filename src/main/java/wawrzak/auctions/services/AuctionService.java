@@ -25,12 +25,14 @@ public class AuctionService {
     private final AuctionRepository auctionRepository;
     private final SecurityService securityService;
     private final ContentService contentService;
+    private final ImageService imageService;
 
 
-    public AuctionService(AuctionRepository auctionRepository, SecurityService securityService, ContentService contentService) {
+    public AuctionService(AuctionRepository auctionRepository, SecurityService securityService, ContentService contentService, ImageService imageService) {
         this.auctionRepository = auctionRepository;
-        this.contentService = contentService;
         this.securityService = securityService;
+        this.contentService = contentService;
+        this.imageService = imageService;
     }
 
     public Optional<Auction> findWithbays(Long auctionId){
@@ -72,7 +74,12 @@ public class AuctionService {
         auction.setTitle(newAuction.getTitle());
         auction.setDescription(newAuction.getDescription());
         auction.setUser(securityService.getLoggedInUser());
-        processImages(newAuction.getFiles()).forEach(auction::addImage);
+//        processImages(newAuction.getFiles()).forEach(auction::addImage);
+        var images = processImages(newAuction.getFiles());
+        images.forEach(auction::addImage);
+        if(!images.isEmpty()) {
+            imageService.resize(images.get(0)).ifPresent(auction::setThumbnail);
+        }
         return auctionRepository.save(auction);
     }
 }
