@@ -1,9 +1,9 @@
 <div xmlns:th="http://www.thymeleaf.org">
     <div th:each="auction : ${auctions}" class="card-body d-flex flex-column align-items-start justify-content-start">
         <div class="mb-1">
-<!--            <img th:if="${auction.images.size() > 0}" th:src="${auction.images.get(0).asByte64()}">-->
             <img th:if="${auction.thumbnail}" class="img-thumbnail" th:src="${auction.thumbnail.asByte64()}">
             <a th:text="${auction.title}" th:href="${'/auction/' + auction.id}"></a></div>
+            <span th:text="#{auction.bid(${auction.lastPrice})}" class="badge badge-pill badge-success"></span>
     </div>
 
 <nav aria-label="Page navigation example">

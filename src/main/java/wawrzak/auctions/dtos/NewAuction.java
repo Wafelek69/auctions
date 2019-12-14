@@ -1,23 +1,28 @@
 package wawrzak.auctions.dtos;
 
+import org.springframework.format.annotation.NumberFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class NewAuction {
 
     @NotNull
-    @NotEmpty
-    @Size(min = 10, max = 100)
+    @Size(min = 5, max = 100)
     private String title;
 
     @NotNull
-    @NotEmpty
-    @Size(min = 20, max = 1000)
+    @Size(min = 10, max = 1000)
     private String description;
+
+    @NotNull
+    @NumberFormat(pattern = "#,##")
+    private BigDecimal lastPrice;
 
     private MultipartFile[] files;
 
@@ -45,11 +50,21 @@ public class NewAuction {
         this.description = description;
     }
 
+    public BigDecimal getLastPrice() {
+        return lastPrice;
+    }
+
+    public void setLastPrice(BigDecimal lastPrice) {
+        this.lastPrice = lastPrice;
+    }
+
     @Override
     public String toString() {
         return "NewAuction{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
+                ", lastPrice=" + lastPrice +
+                ", files=" + Arrays.toString(files) +
                 '}';
     }
 
@@ -59,11 +74,15 @@ public class NewAuction {
         if (o == null || getClass() != o.getClass()) return false;
         NewAuction that = (NewAuction) o;
         return Objects.equals(title, that.title) &&
-                Objects.equals(description, that.description);
+                Objects.equals(description, that.description) &&
+                Objects.equals(lastPrice, that.lastPrice) &&
+                Arrays.equals(files, that.files);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, description);
+        int result = Objects.hash(title, description, lastPrice);
+        result = 31 * result + Arrays.hashCode(files);
+        return result;
     }
 }

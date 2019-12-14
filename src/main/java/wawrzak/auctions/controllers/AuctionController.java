@@ -45,8 +45,6 @@ public class AuctionController {
             model.addAttribute("auction", maybeAuction.get());
 
 
-
-
             return "auction";
         } else {
             throw  new ResponseStatusException(NOT_FOUND, "Auction not found");

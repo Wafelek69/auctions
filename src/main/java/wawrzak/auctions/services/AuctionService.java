@@ -46,6 +46,10 @@ public class AuctionService {
         return auctionRepository.findQuestionViewsById(userId, page);
     }
 
+    public Page<AuctionView>BidAuction(Long userId, Pageable page){
+        return auctionRepository.bidAuction(userId, page);
+    }
+
     private List<Image> processImages(MultipartFile[] files) {
         return Arrays.stream(files)
                 .filter(not(MultipartFile::isEmpty))
@@ -74,7 +78,7 @@ public class AuctionService {
         auction.setTitle(newAuction.getTitle());
         auction.setDescription(newAuction.getDescription());
         auction.setUser(securityService.getLoggedInUser());
-//        processImages(newAuction.getFiles()).forEach(auction::addImage);
+        auction.setLastPrice(newAuction.getLastPrice());
         var images = processImages(newAuction.getFiles());
         images.forEach(auction::addImage);
         if(!images.isEmpty()) {

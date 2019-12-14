@@ -8,12 +8,15 @@
 <div><h3> <strong th:text="${auction.title}"></strong></h3></div>
 
 <div th:text="#{auction.user(${auction.user.name})}"></div>
+<span th:text="#{auction.bid(${auction.lastPrice})}" class="badge badge-pill badge-success"></span>
 <p th:text="${auction.description}"></p>
 <div class="img-box">
     <a th:data-lightbox="${image.name}" th:each="image: ${auction.images}" th:href="${image.asByte64()}">
         <img th:src="${image.asByte64()}" th:alt="${image.name}">
     </a>
 </div>
+
+
 
 
 </body>

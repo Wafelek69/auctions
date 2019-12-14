@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -20,7 +21,7 @@ public class Auction {
     @ManyToOne
     private User user;
 
-    @Size(min = 10, max = 100)
+    @Size(min = 5, max = 100)
     @NotEmpty
     @NotNull
     private String title;
@@ -45,6 +46,8 @@ public class Auction {
             @AttributeOverride(name = "size", column = @Column(name = "thumbnail_size"))
     })
     private Image thumbnail;
+
+    private BigDecimal lastPrice;
 
 
     public void addImage(Image image) {
@@ -107,6 +110,14 @@ public class Auction {
         this.createdOn = createdOn;
     }
 
+    public BigDecimal getLastPrice() {
+        return lastPrice;
+    }
+
+    public void setLastPrice(BigDecimal lastPrice) {
+        this.lastPrice = lastPrice;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -118,12 +129,13 @@ public class Auction {
                 Objects.equals(description, auction.description) &&
                 Objects.equals(createdOn, auction.createdOn) &&
                 Objects.equals(images, auction.images) &&
-                Objects.equals(thumbnail, auction.thumbnail);
+                Objects.equals(thumbnail, auction.thumbnail) &&
+                Objects.equals(lastPrice, auction.lastPrice);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, title, description, createdOn, images, thumbnail);
+        return Objects.hash(id, user, title, description, createdOn, images, thumbnail, lastPrice);
     }
 
     @Override
@@ -136,6 +148,7 @@ public class Auction {
                 ", createdOn=" + createdOn +
                 ", images=" + images +
                 ", thumbnail=" + thumbnail +
+                ", lastprice=" + lastPrice +
                 '}';
     }
 }

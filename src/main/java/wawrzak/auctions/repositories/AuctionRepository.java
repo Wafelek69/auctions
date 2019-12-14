@@ -17,10 +17,13 @@ public interface AuctionRepository extends PagingAndSortingRepository <Auction, 
     @Query("select a from Auction a join fetch a.user left join fetch a.images where a.id=?1 order by a.createdOn desc")
     Optional<Auction> findWithBays(Long id);
 
-    @Query("select new wawrzak.auctions.dtos.AuctionView(a.id, a.title, a.thumbnail) from Auction a order by a.createdOn desc ")
+    @Query("select new wawrzak.auctions.dtos.AuctionView(a.id, a.title, a.thumbnail, a.lastPrice) from Auction a order by a.createdOn desc ")
     Page<AuctionView> findAuctionViews(Pageable page);
 
-    @Query("select new wawrzak.auctions.dtos.AuctionView(a.id, a.title, a.thumbnail) from Auction a where a.user.id = ?1 order by a.createdOn desc ")
+    @Query("select new wawrzak.auctions.dtos.AuctionView(a.id, a.title, a.thumbnail, a.lastPrice) from Auction a where a.user.id = ?1 order by a.createdOn desc ")
     Page<AuctionView> findQuestionViewsById(long usedId, Pageable page);
+
+    @Query("select new wawrzak.auctions.dtos.AuctionView(a.id, a.title, a.thumbnail, a.lastPrice) from Auction a where a.user.id = ?1 order by a.createdOn desc ")
+    Page<AuctionView> bidAuction(long usedId, Pageable page);
 
 }

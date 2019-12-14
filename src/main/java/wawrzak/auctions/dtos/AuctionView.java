@@ -2,6 +2,7 @@ package wawrzak.auctions.dtos;
 
 import wawrzak.auctions.model.Image;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class AuctionView {
@@ -9,11 +10,13 @@ public class AuctionView {
     private final long id;
     private final String title;
     private final Image thumbnail;
+    private final BigDecimal LastPrice;
 
-    public AuctionView(long id, String title, Image thumbnail) {
+    public AuctionView(long id, String title, Image thumbnail, BigDecimal LastPrice) {
         this.id = id;
         this.title = title;
         this.thumbnail = thumbnail;
+        this.LastPrice = LastPrice;
     }
 
     public long getId() {
@@ -28,6 +31,10 @@ public class AuctionView {
         return thumbnail;
     }
 
+    public BigDecimal getLastPrice() {
+        return LastPrice;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -35,12 +42,13 @@ public class AuctionView {
         AuctionView that = (AuctionView) o;
         return id == that.id &&
                 Objects.equals(title, that.title) &&
-                Objects.equals(thumbnail, that.thumbnail);
+                Objects.equals(thumbnail, that.thumbnail) &&
+                Objects.equals(LastPrice, that.LastPrice);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, thumbnail);
+        return Objects.hash(id, title, thumbnail, LastPrice);
     }
 
     @Override
@@ -49,6 +57,7 @@ public class AuctionView {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", thumbnail=" + thumbnail +
+                ", lastprice=" + LastPrice +
                 '}';
     }
 }

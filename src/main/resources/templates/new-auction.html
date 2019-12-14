@@ -18,6 +18,10 @@
     <input th:field="*{description}" class="form-control" id="description" th:placeholder="#{auction.description}">
     <div th:each="error: ${#fields.errors('description')}"
          th:text="${error}"></div>
+    <div>
+    <label for="lastPrice" th:text="#{auction.price}"></label>
+    <input th:field="*{lastPrice}" class="form-control" id="lastPrice" th:placeholder="#{auction.price}">
+    </div>
 
     <div>
         <label for="image" th:text="#{auction.image}"></label>
