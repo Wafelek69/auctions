@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import wawrzak.auctions.dtos.AuctionView;
 import wawrzak.auctions.dtos.NewAuction;
+import wawrzak.auctions.dtos.NewBid;
 import wawrzak.auctions.model.Auction;
 import wawrzak.auctions.model.Image;
 import wawrzak.auctions.repositories.AuctionRepository;
@@ -85,5 +86,12 @@ public class AuctionService {
             imageService.resize(images.get(0)).ifPresent(auction::setThumbnail);
         }
         return auctionRepository.save(auction);
+    }
+
+    public void updatePrice(NewBid bid) {
+
+        var auction = auctionRepository.getOne(bid.getAuctionId());
+        auction.setLastPrice(bid.getNewPrice());
+        auctionRepository.save(auction);
     }
 }

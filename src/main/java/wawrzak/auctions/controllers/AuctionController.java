@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
 import wawrzak.auctions.dtos.NewAuction;
+import wawrzak.auctions.dtos.NewBid;
 import wawrzak.auctions.services.AuctionService;
 import wawrzak.auctions.services.SecurityService;
 
 import javax.validation.Valid;
+
+import java.math.BigDecimal;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
@@ -43,6 +46,7 @@ public class AuctionController {
 
         if(maybeAuction.isPresent()) {
             model.addAttribute("auction", maybeAuction.get());
+            model.addAttribute("newBid", new NewBid(maybeAuction.get().getId(), BigDecimal.ZERO));
 
 
             return "auction";
@@ -59,6 +63,16 @@ public class AuctionController {
         } else {
             var persisted = auctionService.createAuction(auction);
             return "redirect:/auction/" + persisted.getId();
+        }
+    }
+
+    @PostMapping("/bid")
+    public String postBid(@ModelAttribute("newBid") @Valid NewBid bid, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "redirect:/auction/" + bid.getAuctionId();
+        } else {
+            auctionService.updatePrice(bid);
+            return "redirect:/auction/" + bid.getAuctionId();
         }
     }
 

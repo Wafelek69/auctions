@@ -9,12 +9,26 @@
 
 <div th:text="#{auction.user(${auction.user.name})}"></div>
 <span th:text="#{auction.bid(${auction.lastPrice})}" class="badge badge-pill badge-success"></span>
+
+<form th:object="${newBid}" method="post" action="/bid">
+
+    <label th:text="#{auction.price}" for="newPrice"></label>
+    <input type="text" id="newPrice" name="newPrice" th:field="*{newPrice}">
+    <input type="hidden" name="auctionId" th:field="*{auctionId}">
+
+    <input type="hidden"
+            th:name="${_csrf.parameterName}"
+            th:value="${_csrf.token}"/>
+    <button th:text="#{auction.bidPrice}" type="submit"></button>
+</form>
+
 <p th:text="${auction.description}"></p>
 <div class="img-box">
     <a th:data-lightbox="${image.name}" th:each="image: ${auction.images}" th:href="${image.asByte64()}">
         <img th:src="${image.asByte64()}" th:alt="${image.name}">
     </a>
 </div>
+
 
 
 
