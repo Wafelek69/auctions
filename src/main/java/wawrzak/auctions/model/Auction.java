@@ -1,6 +1,7 @@
 package wawrzak.auctions.model;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;

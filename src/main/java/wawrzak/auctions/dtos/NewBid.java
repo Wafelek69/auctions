@@ -1,13 +1,16 @@
 package wawrzak.auctions.dtos;
 
+import org.springframework.format.annotation.NumberFormat;
 import wawrzak.auctions.model.Image;
 
+import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.util.Objects;
 
 public class NewBid {
 
     private final long auctionId;
+    @NumberFormat(pattern = "#,##")
     private final BigDecimal newPrice;
 
     public NewBid(long auctionId, BigDecimal newPrice) {

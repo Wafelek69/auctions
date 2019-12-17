@@ -13,6 +13,7 @@ import wawrzak.auctions.model.Image;
 import wawrzak.auctions.repositories.AuctionRepository;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -89,9 +90,14 @@ public class AuctionService {
     }
 
     public void updatePrice(NewBid bid) {
-
         var auction = auctionRepository.getOne(bid.getAuctionId());
-        auction.setLastPrice(bid.getNewPrice());
-        auctionRepository.save(auction);
+
+        if (bid.getNewPrice().compareTo(auction.getLastPrice()) > 0 ){
+
+            auction.setLastPrice(bid.getNewPrice());
+            auctionRepository.save(auction);
+        }
+
+
+        }
     }
-}
